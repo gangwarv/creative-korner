@@ -1,0 +1,11 @@
+<div>
+    <!-- <div id="editor">
+        <p>Here goes the initial content of the editor.</p>
+    </div> -->
+    <ckeditor [(ngModel)]="doc"></ckeditor>
+    Data:  
+    <div class="container" [innerHtml]="doc">
+    
+    </div>
+    Text : {{ doc }}
+</div>
