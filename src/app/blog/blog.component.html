@@ -1,86 +1,292 @@
+<!-- Grid -->
 <div class="w3-row">
-  <div class="w3-threequarter w3-container w3-content">
-    <div class="w3-row w3-margin w3-border-left w3-border-right w3-padding-16">
-      <div class="w3-col w3-left" style="padding-left: 5px; width: 100px;">
-        <img
-          src="https://lh3.googleusercontent.com/ogw/ADGmqu_ScgMaCc0y9FV2t9pguVquQoykY2n4I54OA7OV=s32-c-mo"
-          style="width: 80px; height: 80px;"
-          class="w3-left w3-circle"
-        />
+  <!-- Tags -->
+  <div class="w3-col w3-white w3-margin">
+    <div class="w3-container w3-white">
+      <p>
+        <span class="w3-tag w3-black w3-margin-bottom">Fashion</span>
+        <span class="w3-tag w3-light-grey w3-small w3-margin-bottom"
+          >New York</span
+        >
+        <span class="w3-tag w3-light-grey w3-small w3-margin-bottom"
+          >London</span
+        >
+        <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">Hats</span>
+        <span class="w3-tag w3-light-grey w3-small w3-margin-bottom"
+          >Norway</span
+        >
+        <span class="w3-tag w3-light-grey w3-small w3-margin-bottom"
+          >Sweaters</span
+        >
+        <span class="w3-tag w3-light-grey w3-small w3-margin-bottom"
+          >Ideas</span
+        >
+        <span class="w3-tag w3-light-grey w3-small w3-margin-bottom"
+          >Deals</span
+        >
+        <span class="w3-tag w3-light-grey w3-small w3-margin-bottom"
+          >Accessories</span
+        >
+        <span class="w3-tag w3-light-grey w3-small w3-margin-bottom">News</span>
+        <span class="w3-tag w3-light-grey w3-small w3-margin-bottom"
+          >Clothing</span
+        >
+        <span class="w3-tag w3-light-grey w3-small w3-margin-bottom"
+          >Shopping</span
+        >
+        <span class="w3-tag w3-light-grey w3-small w3-margin-bottom"
+          >Jeans</span
+        >
+        <span class="w3-tag w3-light-grey w3-small w3-margin-bottom"
+          >Trends</span
+        >
+      </p>
+    </div>
+  </div>
+  <hr />
+  <!-- Blog entries -->
+  <div class="w3-col l8 s12">
+    <!-- Blog entry -->
+    <div class="w3-container w3-white w3-margin w3-padding-large">
+      <div class="w3-center">
+        <h2 [title]="blog.id">{{ blog.title }}</h2>
+        <h5 *ngIf="blog.subTitle" [innerHtml]="blog.subTitle"></h5>
       </div>
-      <div class="w3-rest w3-container w3-mobile">
-        <span class="w3-large">
-          {{ user.fullName }}
+
+      <div class="w3-justify">
+        <ng-container *ngFor="let block of blog.content.blocks">
+          <h2 *ngIf="block.type == 'header'" [innerHtml]="block.data.text"></h2>
+          <p
+            *ngIf="block.type == 'paragraph'"
+            [innerHtml]="block.data.text"
+          ></p>
+        </ng-container>
+        <div class="w3-border-left w3-border-bottom">
+          <div class="w3-container ">
+            <h4>Author</h4>
+          </div>
+          <img
+            [src]="blog.creater.profileUrl"
+            alt="Jane"
+            style="width: 100%;"
+            style="
+              width: 80px;
+              height: 80px;
+              margin-top: 10px;
+              margin-left: 10px;
+            "
+            class="w3-left w3-circle"
+          />
+          <div class="w3-container">
+            <h4>{{ blog.creater.name }}</h4>
+            <p>
+              {{ blog.creater.bio }}
+            </p>
+          </div>
+          <div class="w3-container w3-xlarge w3-padding">
+            <i class="fa fa-facebook-official w3-hover-opacity"></i>
+            <i class="fa fa-instagram w3-hover-opacity"></i>
+            <i class="fa fa-snapchat w3-hover-opacity"></i>
+            <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+            <i class="fa fa-twitter w3-hover-opacity"></i>
+            <i class="fa fa-linkedin w3-hover-opacity"></i>
+          </div>
+        </div>
+        <!-- Blog Actions -->
+        <p class="w3-left">
           <button
-            class="w3-button w3-white w3-border w3-border-red w3-round-large w3-tiny w3-padding-small"
+            class="w3-button w3-white w3-border"
+            onclick="likeFunction(this)"
           >
-            follow
+            <b><i class="fa fa-thumbs-up"></i> Like</b>
           </button>
-        </span>
-        <br />
-        {{ user.bio }}
-        <!-- <br />Harvard University -->
-        <br />
-        <div class="w3-bar">
-          <button class="w3-bar-item w3-button w3-tiny w3-padding-small">
-            <i class="fa fa-facebook-official w3-hover-opacity w3-xlarge"></i>
+        </p>
+        <p class="w3-right">
+          <button class="w3-button w3-black" onclick="myFunction('demo2')">
+            <b>Comments </b>
+            <span class="w3-tag w3-white">{{
+              blog.comments && blog.comments.length
+            }}</span>
           </button>
-          <button class="w3-bar-item w3-button w3-tiny w3-padding-small">
-            <i class="fa fa-instagram w3-hover-opacity w3-xlarge"></i>
-          </button>
-          <button class="w3-bar-item w3-button w3-tiny w3-padding-small">
-            <i class="fa fa-twitter w3-hover-opacity w3-xlarge"></i>
-          </button>
-          <button class="w3-bar-item w3-button w3-tiny w3-padding-small">
-            <i class="fa fa-linkedin w3-hover-opacity w3-xlarge"></i>
-          </button>
+        </p>
+
+        <p class="w3-clear"></p>
+        <!--Add New Comment-->
+        <div class="w3-col l2 m3">
+          <img
+            [src]="'https://www.w3schools.com/w3images/girl.jpg'"
+            style="height: 80px;"
+          />
+        </div>
+        <div class="w3-col l10 m9">
+          <p>
+            <textarea
+              placeholder="Comment..."
+              class="w3-input w3-border"
+              style="resize: none;"
+              spellcheck="false"
+            ></textarea>
+            <button class="w3-margin-top w3-right w3-btn w3-black">SEND</button>
+          </p>
+          <br />
+        </div>
+        <!-- Example of comment field -->
+        <div *ngIf="blog.comments">
+          <div class="w3-row" *ngFor="let cmt of blog.comments">
+            <hr />
+            <div class="w3-col l2 m3">
+              <img [src]="cmt.user.profileUrl" style="height: 80px;" />
+            </div>
+            <div class="w3-col l10 m9">
+              <h4>
+                {{ cmt.user.name }}
+                <span class="w3-opacity w3-medium"
+                  >April 26, 2015, 10:52 PM</span
+                >
+              </h4>
+              <p>
+                {{ cmt.text }}
+              </p>
+              <br />
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <!--Blog Generator-->
-    <div class="w3-container w3-content blog">
-      <div *ngFor="let block of blog.content.blocks">
-        <h2
-          *ngIf="block.type == 'header'; else paragraph"
-          [innerHtml]="block.data.text"
-        ></h2>
-        <ng-template #paragraph
-          ><p [innerHtml]="block.data.text"></p
-        ></ng-template>
+    <hr />
+    <!-- END BLOG ENTRIES -->
+  </div>
+
+  <!-- About/Information menu -->
+  <div class="w3-col l4">
+    <div class="w3-white w3-margin">
+      <div class="w3-container w3-padding w3-black">
+        <h4>Author</h4>
+      </div>
+      <img
+        [src]="blog.creater.profileUrl"
+        alt="Jane"
+        style="width: 100%;"
+        style="width: 80px; height: 80px; margin-top: 10px; margin-left: 10px;"
+        class="w3-left w3-circle"
+      />
+      <div class="w3-container">
+        <h4>{{ blog.creater.name }}</h4>
+        <p>
+          {{ blog.creater.bio }}
+        </p>
+      </div>
+      <div class="w3-container w3-xlarge w3-padding">
+        <i class="fa fa-facebook-official w3-hover-opacity"></i>
+        <i class="fa fa-instagram w3-hover-opacity"></i>
+        <i class="fa fa-snapchat w3-hover-opacity"></i>
+        <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+        <i class="fa fa-twitter w3-hover-opacity"></i>
+        <i class="fa fa-linkedin w3-hover-opacity"></i>
       </div>
     </div>
-    <!-- The Band Section -->
-    <div class="w3-container w3-content blog" id="band">
-      <h2 class="w3-wide">My Blog TITLE</h2>
-      <p>
-        We have created a fictional band website. Lorem ipsum dolor sit amet,
-        consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-        dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-        proident, sunt in culpa qui officia deserunt mollit anim id est laborum
-        consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-      </p>
-      <h2 class="w3-wide">THE BAND</h2>
-      <p class="w3-opacity"><i>We love music</i></p>
-      <p class="w3-justify">
-        We have created a fictional band website. Lorem ipsum dolor sit amet,
-        consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-        dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-        proident, sunt in culpa qui officia deserunt mollit anim id est laborum
-        consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-      </p>
+    <hr />
+    <!-- Posts -->
+    <div class="w3-white w3-margin">
+      <div class="w3-container w3-padding w3-black">
+        <h4>Popular Posts</h4>
+      </div>
+      <ul class="w3-ul w3-hoverable w3-white">
+        <li class="w3-padding-16">
+          <img
+            src="/w3images/avatar_smoke.jpg"
+            alt="Image"
+            class="w3-left w3-margin-right"
+            style="width: 50px;"
+          />
+          <span class="w3-large">Denim</span>
+          <br />
+          <span>Sed mattis nunc</span>
+        </li>
+        <li class="w3-padding-16">
+          <img
+            src="/w3images/bandmember.jpg"
+            alt="Image"
+            class="w3-left w3-margin-right"
+            style="width: 50px;"
+          />
+          <span class="w3-large">Sweaters</span>
+          <br />
+          <span>Praes tinci sed</span>
+        </li>
+        <li class="w3-padding-16">
+          <img
+            src="/w3images/workshop.jpg"
+            alt="Image"
+            class="w3-left w3-margin-right"
+            style="width: 50px;"
+          />
+          <span class="w3-large">Workshop</span>
+          <br />
+          <span>Ultricies congue</span>
+        </li>
+        <li class="w3-padding-16">
+          <img
+            src="/w3images/avatar_smoke.jpg"
+            alt="Image"
+            class="w3-left w3-margin-right w3-sepia"
+            style="width: 50px;"
+          />
+          <span class="w3-large">Trends</span>
+          <br />
+          <span>Lorem ipsum dipsum</span>
+        </li>
+      </ul>
     </div>
+    <hr />
+
+    <!-- Advertising -->
+    <div class="w3-white w3-margin" *ngIf="showSubscription">
+      <div class="w3-container w3-padding w3-black">
+        <h4>Advertise</h4>
+      </div>
+      <div class="w3-container w3-white">
+        <div
+          class="w3-container w3-display-container w3-light-grey w3-section"
+          style="height: 200px;"
+        >
+          <span class="w3-display-middle">Your AD Here</span>
+        </div>
+      </div>
+    </div>
+    <hr />
+
+    <!-- Subscribe -->
+    <div class="w3-white w3-margin" *ngIf="showSubscription">
+      <div class="w3-container w3-padding w3-black">
+        <h4>Subscribe</h4>
+      </div>
+      <div class="w3-container w3-white">
+        <p>
+          Enter your e-mail below and get notified on the latest blog posts.
+        </p>
+        <p>
+          <input
+            class="w3-input w3-border"
+            type="text"
+            placeholder="Enter e-mail"
+            style="width: 100%;"
+          />
+        </p>
+        <p>
+          <button
+            type="button"
+            onclick="document.getElementById('subscribe').style.display='block'"
+            class="w3-button w3-block w3-red"
+          >
+            Subscribe
+          </button>
+        </p>
+      </div>
+    </div>
+
+    <!-- END About/Intro Menu -->
   </div>
-  <div class="w3-quarter w3-container">
-    <h2>Ads</h2>
-  </div>
+
+  <!-- END GRID -->
 </div>

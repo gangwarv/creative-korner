@@ -7,22 +7,21 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./blog.component.scss'],
 })
 export class BlogComponent implements OnInit {
+  showAds = false;
+  showSubscription = false;
   blog: Blog = new Blog();
-  user: User = {
-    fullName: 'Vishal Gangwar',
-    bio:
-      "I'm a professional Software Developer. I love to write Technical content. I love to write Technical content. I love to write Technical content",
-  };
+
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe((params) => {
-      this.blog.blogId = params['id'];
-      this.blog.title = this.blog.blogId;
+    // this.route.paramMap.subscribe
+    this.route.params.subscribe((params) => {
+      this.blog.id = params['id'];
+      this.blog.title = 'My First Blog';
+
       this.blog.content = {
         time: 1592584304450,
         blocks: [
-          { type: 'header', data: { text: 'My Blog Title', level: 2 } },
           {
             type: 'paragraph',
             data: {
@@ -38,6 +37,7 @@ export class BlogComponent implements OnInit {
                 exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.`,
             },
           },
+          { type: 'header', data: { text: 'Few Steps', level: 2 } },
           {
             type: 'paragraph',
             data: {
@@ -48,19 +48,63 @@ export class BlogComponent implements OnInit {
         ],
         version: '2.18.0',
       };
+      this.blog.creater = {
+        name: 'Vishal Gangwar',
+        profileUrl:
+          'https://lh3.googleusercontent.com/ogw/ADGmqu_ScgMaCc0y9FV2t9pguVquQoykY2n4I54OA7OV=s32-c-mo',
+        bio:
+          "I'm a professional Software Developer. I love to write Technical content. I love to write Technical content. I love to write Technical content",
+      };
+      this.blog.comments = [
+        {
+          user:{
+            name: 'Sanjay Singh',
+            profileUrl:'https://lh3.googleusercontent.com/ogw/ADGmqu_ScgMaCc0y9FV2t9pguVquQoykY2n4I54OA7OV=s32-c-mo',
+
+          },
+          text:`Love your blog page! Simply the best! Lorem ipsum dolor sit
+          amet, consectetur adipiscing elit, sed do eiusmod tempor
+          incididunt ut labore et dolore magna aliqua.`,
+          createdAt: new Date()
+        },
+        {
+          user:{
+            name: 'Manu',
+            profileUrl:'https://www.w3schools.com/w3images/girl_train.jpg',
+
+          },
+          text:`Love hats!!`,
+          createdAt: new Date()
+        }
+      ]
     });
   }
 }
 
 class Blog {
-  blogId: String;
+  id: String;
   title: String;
+  subTitle: String;
+  creater?: IUser;
   content: any;
   metaTitle: String;
   metaDescription: String;
+  comments?: Comment[];
 }
 
-class User {
-  fullName: String;
-  bio: String;
+// class User implements IUser {
+//   name: String;
+//   profileUrl: String;
+//   bio: String;
+// }
+
+interface IUser {
+  name: String;
+  profileUrl: String;
+  bio?: String;
+}
+interface Comment {
+  user: IUser;
+  text: String;
+  createdAt: Date;
 }

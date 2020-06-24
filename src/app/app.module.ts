@@ -6,10 +6,12 @@ import { AppComponent } from './app.component';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
+import { TopnavComponent } from './topnav/topnav.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    TopnavComponent,
   ],
   imports: [
     BrowserModule,
