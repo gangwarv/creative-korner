@@ -7,9 +7,17 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./blog.component.scss'],
 })
 export class BlogComponent implements OnInit {
-  showAds = false;
+  showAds = true;
   showSubscription = false;
+  showComments = false;
   blog: Blog = new Blog();
+  relatedBlogs = [{
+    title:'How to setup user authentication in MongoDB 4.0',
+    id:'how-to-setup-auth-in-mongodb-3-0-properly'
+  },{
+    title:'Docker for Node.js in Production',
+    id:'docker-for-nodejs-in-production'
+  }]
 
   constructor(private route: ActivatedRoute) {}
 
@@ -17,7 +25,8 @@ export class BlogComponent implements OnInit {
     // this.route.paramMap.subscribe
     this.route.params.subscribe((params) => {
       this.blog.id = params['id'];
-      this.blog.title = 'My First Blog';
+      this.blog.title = 'How to Use the Psychology of Color to Increase Website Conversions and Popularity';
+      this.blog.category = 'tech';
 
       this.blog.content = {
         time: 1592584304450,
@@ -48,7 +57,7 @@ export class BlogComponent implements OnInit {
         ],
         version: '2.18.0',
       };
-      this.blog.creater = {
+      this.blog.creator = {
         name: 'Vishal Gangwar',
         profileUrl:
           'https://lh3.googleusercontent.com/ogw/ADGmqu_ScgMaCc0y9FV2t9pguVquQoykY2n4I54OA7OV=s32-c-mo',
@@ -57,35 +66,43 @@ export class BlogComponent implements OnInit {
       };
       this.blog.comments = [
         {
-          user:{
+          user: {
             name: 'Sanjay Singh',
-            profileUrl:'https://lh3.googleusercontent.com/ogw/ADGmqu_ScgMaCc0y9FV2t9pguVquQoykY2n4I54OA7OV=s32-c-mo',
-
+            profileUrl:
+              'https://lh3.googleusercontent.com/ogw/ADGmqu_ScgMaCc0y9FV2t9pguVquQoykY2n4I54OA7OV=s32-c-mo',
           },
-          text:`Love your blog page! Simply the best! Lorem ipsum dolor sit
+          text: `Love your blog page! Simply the best! Lorem ipsum dolor sit
           amet, consectetur adipiscing elit, sed do eiusmod tempor
           incididunt ut labore et dolore magna aliqua.`,
-          createdAt: new Date()
+          createdAt: new Date(),
         },
         {
-          user:{
+          user: {
             name: 'Manu',
-            profileUrl:'https://www.w3schools.com/w3images/girl_train.jpg',
-
+            profileUrl: 'https://www.w3schools.com/w3images/girl_train.jpg',
           },
-          text:`Love hats!!`,
-          createdAt: new Date()
-        }
-      ]
+          text: `Love hats!!`,
+          createdAt: new Date(),
+        },
+      ];
+      this.blog.creator.socialLinks = {
+        fb: '#',
+        instagram: '#',
+        // twitter: '#',
+        linkedIn: '#'
+      };
     });
+  }
+  toggleComments(){
+    this.showComments = !this.showComments;
   }
 }
 
 class Blog {
   id: String;
   title: String;
-  subTitle: String;
-  creater?: IUser;
+  category: String;
+  creator?: IUser;
   content: any;
   metaTitle: String;
   metaDescription: String;
@@ -102,6 +119,13 @@ interface IUser {
   name: String;
   profileUrl: String;
   bio?: String;
+
+  socialLinks?: {
+    fb?: String;
+    instagram?: String;
+    twitter?: String;
+    linkedIn?: String;
+  };
 }
 interface Comment {
   user: IUser;

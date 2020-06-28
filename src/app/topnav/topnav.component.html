@@ -1,5 +1,5 @@
-<div class="w3-top">
-  <div class="w3-bar w3-card w3-black">
+<div class="w3-top-">
+  <div class="w3-bar w3-card w3-black-">
     <a
       class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right"
       href="javascript:void(0)"
@@ -15,21 +15,9 @@
       />
     </a>
     <a
-      [routerLink]="[
-        '/blog/reactjs-vs-angular5-vs-vue-js-what-to-choose-in-2018'
-      ]"
-      class="w3-bar-item w3-button w3-padding-large w3-hide-small"
-      >Blog Post</a
-    >
-    <a
       [routerLink]="['/edit/editor']"
       class="w3-bar-item w3-button w3-padding-large w3-hide-small"
       >EDITOR</a
-    >
-    <a
-      href="#contact"
-      class="w3-bar-item w3-button w3-padding-large w3-hide-small"
-      >ABOUT</a
     >
     <!-- <div class="w3-dropdown-hover w3-hide-small">
         <button class="w3-padding-large w3-button" title="More">
@@ -44,7 +32,7 @@
     <a
       href="javascript:void(0)"
       onclick="openSearch()"
-      class="w3-padding-large w3-hover-red w3-hide-small w3-right"
+      class="w3-padding-large w3-hover-theme w3-hide-small w3-right"
       ><i class="fa fa-search"></i
     ></a>
     <a
@@ -69,32 +57,31 @@
 <!-- Navbar on small screens (remove the onclick attribute if you want the navbar to always show on top of the content when clicking on the links) -->
 <div
   id="navDemo"
-  class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top"
-  style="margin-top: 46px;"
+  class="w3-bar-block w3-black- w3-hide w3-hide-large w3-hide-medium w3-top-"
 >
-  <a
-    [routerLink]="[
-      '/blog/reactjs-vs-angular5-vs-vue-js-what-to-choose-in-2018'
-    ]"
-    class="w3-bar-item w3-button w3-padding-large"
-    >BLOG</a
-  >
-  <a
-    [routerLink]="['/edit/editor']"
-    class="w3-bar-item w3-button w3-padding-large"
-    >EDITOR</a
-  >
-  <a
-    href="#"
-    class="w3-bar-item w3-button w3-padding-large"
-    onclick="myFunction()"
-    >ABOUT</a
-  >
   <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding-large">
-    <img
-      src="https://lh3.googleusercontent.com/ogw/ADGmqu_ScgMaCc0y9FV2t9pguVquQoykY2n4I54OA7OV=s32-c-mo"
-      style="width: 30px; height: 30px; padding: 0px;"
-      class="w3-circle"
-    />
+    Log In/Out
   </a>
+</div>
+
+<!-- SEARCH BAR-->
+
+<!--Fullscreen Search-->
+<div id="myOverlay" class="overlay">
+  <span class="closebtn" onclick="closeSearch()" title="Close Overlay">×</span>
+  <div class="overlay-content">
+    <form>
+      <input
+        type="text"
+        placeholder="Search.."
+        name="searchText"
+        [(ngModel)]="searchText"
+        (input)="onSearchTextChange($event)"
+      />
+      <button type="button"><i class="fa fa-search"></i></button>
+      <ul style="width: 100%;text-align: left;" class="w3-ul w3-card w3-white" *ngFor="let blog of matchedBlogs">
+        <li><a class="w3-link" href="javascript:void(0)" (click)="openBlog(blog.id)">{{ blog.title }}</a></li>
+      </ul>
+    </form>
+  </div>
 </div>
