@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
+import { Observable } from 'rxjs';
+import { User } from '../models/user.model';
 
 @Component({
   selector: 'app-topnav',
@@ -7,10 +10,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./topnav.component.scss'],
 })
 export class TopnavComponent implements OnInit {
+  user$: Observable<User>;
   searchText: String = '';
   matchedBlogs: { id: String; title: String }[];
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private auth: AuthService) {
+    this.user$ = auth.user$;
+  }
   onSearchTextChange(e) {
     if (e.target.value.length == 1)
       this.matchedBlogs = [
@@ -40,4 +46,11 @@ export class TopnavComponent implements OnInit {
     (window as any).closeSearch();
   }
   ngOnInit(): void {}
+
+  signIn() {
+    this.auth.googleSignin();
+  }
+  signOut(){
+    this.auth.signOut()
+  }
 }

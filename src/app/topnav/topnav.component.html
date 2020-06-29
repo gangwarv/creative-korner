@@ -35,7 +35,24 @@
       class="w3-padding-large w3-hover-theme w3-hide-small w3-right"
       ><i class="fa fa-search"></i
     ></a>
+    <ng-container *ngIf="(user$ | async) as user; else btnSignout">
+      <a
+      (click)="signOut()"
+     
+      class="w3-bar-item w3-button w3-padding-large w3-hide-small w3-right"
+      >Log Out</a
+    >
+    </ng-container>
+    
+    <ng-template #btnSignout>
     <a
+      (click)="signIn()"
+      class="w3-bar-item w3-button w3-padding-large w3-hide-small w3-right"
+    >
+      Log In</a
+    >
+  </ng-template>
+    <!-- <a
       href="javascript:void(0)"
       class="w3-button0 w3-dropdown-hover w3-padding-large w3-hide-small w3-right"
     >
@@ -51,7 +68,7 @@
           <li>Adam</li>
         </ul>
       </div>
-    </a>
+    </a> -->
   </div>
 </div>
 <!-- Navbar on small screens (remove the onclick attribute if you want the navbar to always show on top of the content when clicking on the links) -->
@@ -79,8 +96,19 @@
         (input)="onSearchTextChange($event)"
       />
       <button type="button"><i class="fa fa-search"></i></button>
-      <ul style="width: 100%;text-align: left;" class="w3-ul w3-card w3-white" *ngFor="let blog of matchedBlogs">
-        <li><a class="w3-link" href="javascript:void(0)" (click)="openBlog(blog.id)">{{ blog.title }}</a></li>
+      <ul
+        style="width: 100%; text-align: left;"
+        class="w3-ul w3-card w3-white"
+        *ngFor="let blog of matchedBlogs"
+      >
+        <li>
+          <a
+            class="w3-link"
+            href="javascript:void(0)"
+            (click)="openBlog(blog.id)"
+            >{{ blog.title }}</a
+          >
+        </li>
       </ul>
     </form>
   </div>
