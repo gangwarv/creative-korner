@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>CreativeKorner</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--SSR-->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Lato"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <script>
+      // var myIndex = 0;
+      // carousel();
+
+      // function carousel() {
+      //   var i;
+      //   var x = document.getElementsByClassName("mySlides");
+      //   for (i = 0; i < x.length; i++) {
+      //     x[i].style.display = "none";
+      //   }
+      //   myIndex++;
+      //   if (myIndex > x.length) {
+      //     myIndex = 1;
+      //   }
+      //   x[myIndex - 1].style.display = "block";
+      //   setTimeout(carousel, 4000);
+      // }
+
+      // Used to toggle the menu on small screens when clicking on the menu button
+      function myFunction() {
+        var x = document.getElementById("navDemo");
+        if (x.className.indexOf("w3-show") == -1) {
+          x.className += " w3-show";
+        } else {
+          x.className = x.className.replace(" w3-show", "");
+        }
+      }
+
+      // When the user clicks anywhere outside of the modal, close it
+      var modal = document.getElementById("ticketModal");
+      window.onclick = function (event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      };
+    </script>
+    <script>
+      function openSearch() {
+        document.getElementById("myOverlay").style.display = "block";
+      }
+
+      function closeSearch() {
+        document.getElementById("myOverlay").style.display = "none";
+      }
+    </script>
+    <style>
+      .w3-theme {
+      color:#fff !important;background-color:#3f51b5 !important}
+      .w3-theme-light {
+      color:#000 !important;background-color:#e8eaf6 !important}
+      .w3-theme-dark {
+      color:#fff !important;background-color:#1a237e !important}
+      .w3-theme-l5 {
+      color:#000 !important;background-color:#e8eaf6 !important}
+      .w3-theme-l4 {
+      color:#000 !important;background-color:#c5cae9 !important}
+      .w3-theme-l3 {
+      color:#000 !important;background-color:#9fa8da !important}
+      .w3-theme-l2 {
+      color:#fff !important;background-color:#7986cb !important}
+      .w3-theme-l1 {
+      color:#fff !important;background-color:#5c6bc0 !important}
+      .w3-theme-d1 {
+      color:#fff !important;background-color:#3949ab !important}
+      .w3-theme-d2 {
+      color:#fff !important;background-color:#303f9f !important}
+      .w3-theme-d3 {
+      color:#fff !important;background-color:#283593 !important}
+      .w3-theme-d4 {
+      color:#fff !important;background-color:#1a237e !important}
+      .w3-theme-action {
+      color:#fff !important;background-color:#311b92 !important}
+      .w3-text-theme {
+      color:#1a237e !important}
+      </style>
+  <link rel="stylesheet" href="styles.5fee6a5a07df1fba7617.css"></head>
+  <body>
+    <app-root></app-root>
+  <script src="runtime-es2015.4467e944ec65733eb057.js" type="module"></script><script src="runtime-es5.4467e944ec65733eb057.js" nomodule defer></script><script src="polyfills-es5.9e286f6d9247438cbb02.js" nomodule defer></script><script src="polyfills-es2015.690002c25ea8557bb4b0.js" type="module"></script><script src="main-es2015.0cbc8c11c017a68c1055.js" type="module"></script><script src="main-es5.0cbc8c11c017a68c1055.js" nomodule defer></script></body>
+</html>
