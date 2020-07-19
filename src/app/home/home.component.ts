@@ -6,13 +6,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  relatedBlogs = [{
-    title:'How to setup user authentication in MongoDB 4.0',
-    id:'how-to-setup-auth-in-mongodb-3-0-properly'
-  },{
-    title:'Docker for Node.js in Production',
-    id:'docker-for-nodejs-in-production'
-  }]
+  relatedBlogs = [
+    {
+      title: 'My First Blog',
+      id: 'my-first-blog'
+    },
+    {
+      title: 'How to setup user authentication in MongoDB 4.0',
+      id: 'how-to-setup-auth-in-mongodb-3-0-properly'
+    },
+    {
+      title: 'Docker for Node.js in Production',
+      id: 'docker-for-nodejs-in-production'
+    }]
   constructor() { }
 
   ngOnInit(): void {

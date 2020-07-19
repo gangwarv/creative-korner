@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import ClassicEditor from '../../../../CKEditor/ckeditor5-build-classic';
-// import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-// import SimpleUploadAdapter from '@ckeditor/ckeditor5-upload/src/adapters/simpleuploadadapter';
-import { BehaviorSubject } from 'rxjs';
-
-import page from './page';
+import { Blog } from '../models/blog.model'
+import { BehaviorSubject, of } from 'rxjs';
+import { data } from '../data';
+import { ActivatedRoute } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
+import { BlogService } from '../services/blog.service';
 
 @Component({
   selector: 'app-edit',
@@ -12,32 +12,43 @@ import page from './page';
   styleUrls: ['./edit.component.scss'],
 })
 export class EditComponent implements OnInit {
-  data = new BehaviorSubject<string>(page);
-  doc: String = page;
-  constructor() {}
+  data = new BehaviorSubject<any>(null);
+  autoId = false;
+  post: Blog = {
+    id: 'my-first-blog',
+    title: 'Blog Title',
+    content: data,
+    category:'tech'
+  }
+
+  constructor(private route: ActivatedRoute, private blogService: BlogService) { }
 
   ngOnInit(): void {
-    setTimeout(() => {
-      console.log('setting');
-      // this.html = page;
-    }, 2000);
-    // ClassicEditor.create(document.querySelector('#editor'),{
-    //   // plugins:[ SimpleUploadAdapter],
-    //   // plugins:['uploadimage'],
-    //   simpleUpload: {
-    //     // The URL that the images are uploaded to.
-    //     uploadUrl: 'http://localhost:3000/upload',
+    this.route.params.pipe(switchMap(({ id }) => {
+      if (id)
+        return of(this.post as Blog)
+      else
+        return of({} as Blog);
+    })).subscribe(blog => {
+      this.data.next(blog);
+    })
 
-    // }
-    // })
-    //   .then((editor) => {
-    //     editor.setData(this.data.value)
-    //     editor.model.document.on('change:data', (e) => {
-    //       this.data.next(editor.getData())
-    //     });
-    //   })
-    //   .catch((error) => {
-    //     console.error(error);
-    //   });
+  }
+  onContentChange(e) {
+    this.post.content = e;
+  }
+  saveBlog() {
+    if(!this.post.id)
+    this.post.id = this.post.title.toLowerCase().split(' ').join('-');
+    
+    this.blogService.update(this.post).then(_ => {
+      console.log('Success')
+    })
+    .catch(err=>{
+      console.log(err)
+    })
+  }
+  onTitleChange(e){
+    
   }
 }

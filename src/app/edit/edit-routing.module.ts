@@ -2,11 +2,12 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { EditComponent } from './edit.component';
-import { EditorComponent } from '../editor/editor.component';
 import { AuthGuard } from '../services/auth.guard';
+import { CdnEditorComponent } from '../cdn-editor/cdn-editor.component';
 
-const routes: Routes = [{ path: '', component: EditComponent },
- { path: 'editor', component: EditorComponent, canActivate: [] }];
+const routes: Routes = [{ path: ':id', component: EditComponent },
+{  path: '', component: EditComponent },
+{ path: 'cdn', component: CdnEditorComponent }];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

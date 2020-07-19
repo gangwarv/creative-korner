@@ -1,5 +1,5 @@
 <div class="w3-top-">
-  <div class="w3-bar w3-card w3-black-">
+  <div class="w3-bar w3-border-bottom w3-white">
     <a
       class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right"
       href="javascript:void(0)"
@@ -10,66 +10,38 @@
     <a [routerLink]="['/']" class="w3-bar-item w3-padding-large">
       <img
         src="assets/img/logo.png"
-        style="width: 30px; height: 30px; padding: 0px;"
+        style="width: 30px; height: 24px; padding: 0px;"
         class="w3-circle"
       />
     </a>
-    <div class="w3-dropdown-hover w3-hide-small">
-      <button class="w3-padding-large w3-button" title="More">
-        STORIES <i class="fa fa-caret-down"></i>
-      </button>
-      <div class="w3-dropdown-content w3-bar-block w3-card-4">
-        <a [routerLink]="['/edit/editor']" class="w3-bar-item w3-button"
-          >New Story</a
-        >
-        <a [routerLink]="['/my-stories']" class="w3-bar-item w3-button"
-          >My Stories</a
-        >
-      </div>
-    </div>
     <a
       href="javascript:void(0)"
       onclick="openSearch()"
       class="w3-padding-large w3-hover-theme w3-hide-small w3-right"
       ><i class="fa fa-search"></i
     ></a>
-    <ng-container *ngIf="user$ | async as user; else btnSignout">
-      <a
-        href="javascript:void(0)"
-        class="w3-button0 w3-dropdown-hover w3-padding-large w3-hide-small w3-right"
-      >
-        <img
-          src="https://lh3.googleusercontent.com/ogw/ADGmqu_ScgMaCc0y9FV2t9pguVquQoykY2n4I54OA7OV=s32-c-mo"
-          style="width: 30px; height: 30px; padding: 0px;"
-          class="w3-circle"
-        />
-        <div class="w3-dropdown-content w3-border"  >
-          <div class="w3-dropdown-content w3-bar-block w3-card-4">
-            <a [routerLink]="['/edit/editor']" class="w3-bar-item w3-button"
-              >New Story</a
-            >
-            <a [routerLink]="['/my-stories']" class="w3-bar-item w3-button"
-              >My Stories</a
-            >
-            <a (click)="signOut()" href="javascript:void(0)" class="w3-bar-item w3-button"
-              >Log Out</a
-            >
-          </div>
-          <!-- <ul class="w3-ul">
-            <li>
-              <a [routerLink]="['/edit/editor']" class="w3-link">New Story</a>
-            </li>
-            <li>
-              <a [routerLink]="['/my-stories']" class="w3-link">My Stories</a>
-            </li>
-            <li>
-              <a (click)="signOut()" href="javascript:void(0)" class="w3-link"
-                >Log Out</a
-              >
-            </li>
-          </ul> -->
+    <ng-container *ngIf="(user$ | async) as user; else btnSignout">
+      <div class="w3-dropdown-hover w3-right w3-hide-small w3-hover-theme">
+        <button class="w3-button w3-padding-large" title="Notifications">
+          <img src="https://lh3.googleusercontent.com/ogw/ADGmqu_ScgMaCc0y9FV2t9pguVquQoykY2n4I54OA7OV=s32-c-mo"
+           class="w3-circle" style="height:23px;width:23px" alt="Avatar">
+        <span class="w3-badge w3-right w3-small w3-theme-l3">3</span></button>     
+        <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:300px">
+          <a [routerLink]="['/edit/editor']" class="w3-bar-item w3-button"
+          >New Story</a
+        >
+        <a [routerLink]="['/edit/cdn']" class="w3-bar-item w3-button"
+          >New Story CDN</a
+        >
+        <a [routerLink]="['/my-stories']" class="w3-bar-item w3-button"
+          >My Stories</a
+        >
         </div>
-      </a>
+      </div>
+      <!-- <a href="#" class="w3-bar-item w3-button w3-hide-small w3-right w3-padding-large w3-hover-white" title="My Account">
+        <img src="https://lh3.googleusercontent.com/ogw/ADGmqu_ScgMaCc0y9FV2t9pguVquQoykY2n4I54OA7OV=s32-c-mo" 
+        class="w3-circle" style="height:23px;width:23px" alt="Avatar">
+      </a> -->
     </ng-container>
 
     <ng-template #btnSignout>
@@ -85,7 +57,7 @@
 <!-- Navbar on small screens (remove the onclick attribute if you want the navbar to always show on top of the content when clicking on the links) -->
 <div
   id="navDemo"
-  class="w3-bar-block w3-black- w3-hide w3-hide-large w3-hide-medium w3-top-"
+  class="w3-bar-block w3-theme w3-hide w3-hide-large w3-hide-medium w3-top-"
 >
   <ng-container *ngIf="user$ | async as user; else sbtnSignout">
     <a

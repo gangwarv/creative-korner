@@ -5,14 +5,14 @@
 export const environment = {
   production: false,
   firebaseConfig :{
-    apiKey: "AIzaSyDrMA6qVpCe9jq1p0yR7OvBLH2eMwuA0Xw",
-    authDomain: "creative-korner-ff4fe.firebaseapp.com",
-    databaseURL: "https://creative-korner-ff4fe.firebaseio.com",
-    projectId: "creative-korner-ff4fe",
-    storageBucket: "creative-korner-ff4fe.appspot.com",
-    messagingSenderId: "225499480571",
-    appId: "1:225499480571:web:aeb76101aed846e3ad4b5e",
-    measurementId: "G-HVDDE61PEM"
+    apiKey: "AIzaSyAgKYeONOX_INwKObUQ_w1OhaE22hpcoZk",
+    authDomain: "creative-korner-8b79c.firebaseapp.com",
+    databaseURL: "https://creative-korner-8b79c.firebaseio.com",
+    projectId: "creative-korner-8b79c",
+    storageBucket: "creative-korner-8b79c.appspot.com",
+    messagingSenderId: "846641690785",
+    appId: "1:846641690785:web:e7bb37880727448b2c98e0",
+    measurementId: "G-R20F1J9HLC"
   }
 };
 

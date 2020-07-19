@@ -66,6 +66,7 @@
             *ngIf="block.type == 'paragraph'"
             [innerHtml]="block.data.text"
           ></p>
+          <img *ngIf="block.type == 'image'" [src]="block.data.file.url"  style="width:100%" class="w3-padding-16">
         </ng-container>
         <p class="w3-clear"></p>
         <!-- Blog Actions -->
@@ -159,7 +160,7 @@
     <hr />
     <!-- About/Information menu -->
     <!-- About Card -->
-    <div class="w3-white w3-margin">
+    <div class="w3-white w3-margin" *ngIf="blog.creator">
       <img
         [src]="blog.creator.photoURL"
         style="
@@ -179,7 +180,7 @@
     <hr />
     <!-- Posts -->
     <div class="w3-white w3-margin">
-      <div class="w3-container w3-theme-l5">
+      <div class="w3-container w3-theme-l1">
         <h4>Popular Blogs</h4>
       </div>
       <ul class="w3-ul w3-white w3-link">

@@ -5,11 +5,14 @@ import { EditRoutingModule } from './edit-routing.module';
 import { EditComponent } from './edit.component';
 import { CKEditorModule, } from 'ckeditor4-angular'
 import { FormsModule } from '@angular/forms';
-import { EditorComponent } from '../editor/editor.component'
+// import { EditorComponent } from '../editor/editor.component';
+import { CdnEditorComponent } from '../cdn-editor/cdn-editor.component'
 
 
 @NgModule({
-  declarations: [EditComponent, EditorComponent],
+  declarations: [EditComponent,
+    //  EditorComponent, 
+    CdnEditorComponent],
   imports: [
     CommonModule,
     EditRoutingModule,

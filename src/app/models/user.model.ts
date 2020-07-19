@@ -13,3 +13,8 @@ export interface User {
     linkedIn?: String;
   };
 }
+
+export interface Role {
+  canPublish: boolean,
+  isAdmin: boolean
+}

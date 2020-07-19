@@ -1,13 +1,17 @@
 import { User } from './user.model';
 export interface Blog {
-  id: String;
+  id?: string;
   title: String;
-  category: String;
+  category?: String;
   creator?: User;
   content: any;
   metaTitle?: String;
   metaDescription?: String;
   comments?: BlogComment[];
+  createdAt?: Date;
+  updatedAt?: Date;
+  isPublished?: boolean;
+  publishedAt?: Date;
 }
 
 export interface BlogContent {

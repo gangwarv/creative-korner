@@ -8,6 +8,10 @@ const routes: Routes = [
     pathMatch: 'full',
   },
   {
+    path: 'my-stories',
+    loadChildren: () => import('./my-stories/my-stories.module').then((m) => m.MyStoriesModule),
+  },
+  {
     path: 'edit',
     loadChildren: () => import('./edit/edit.module').then((m) => m.EditModule),
   },

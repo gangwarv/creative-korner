@@ -13,15 +13,16 @@ import { auth } from 'firebase';
 })
 export class AuthService {
   user$: Observable<User>;
+  isLoggedIn$: Observable<boolean>;
 
   constructor(
-      private afAuth: AngularFireAuth,
-      private afs: AngularFirestore,
-      private router: Router
-  ) { 
+    private afAuth: AngularFireAuth,
+    private afs: AngularFirestore,
+    private router: Router
+  ) {
     this.user$ = this.afAuth.authState.pipe(
       switchMap(user => {
-          // Logged in
+        // Logged in
         if (user) {
           return this.afs.doc<User>(`users/${user.uid}`).valueChanges();
         } else {
@@ -29,7 +30,13 @@ export class AuthService {
           return of(null);
         }
       })
-    )
+    );
+    this.isLoggedIn$ = this.user$.pipe(switchMap(user => {
+      if (user)
+        return of(true)
+      else
+        return of(false)
+    }))
   }
 
   async googleSignin() {
@@ -41,12 +48,12 @@ export class AuthService {
     // Sets user data to firestore on login
     const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${user.uid}`);
 
-    const data = { 
-      uid: user.uid, 
-      email: user.email, 
-      displayName: user.displayName, 
+    const data = {
+      uid: user.uid,
+      email: user.email,
+      displayName: user.displayName,
       photoURL: user.photoURL
-    } 
+    }
 
     return userRef.set(data, { merge: true })
 
