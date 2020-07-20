@@ -1,13 +1,13 @@
 export const environment = {
   production: true,
   firebaseConfig: {
-    apiKey: 'AIzaSyDrMA6qVpCe9jq1p0yR7OvBLH2eMwuA0Xw',
-    authDomain: 'creative-korner-ff4fe.firebaseapp.com',
-    databaseURL: 'https://creative-korner-ff4fe.firebaseio.com',
-    projectId: 'creative-korner-ff4fe',
-    storageBucket: 'creative-korner-ff4fe.appspot.com',
-    messagingSenderId: '225499480571',
-    appId: '1:225499480571:web:aeb76101aed846e3ad4b5e',
-    measurementId: 'G-HVDDE61PEM',
+    apiKey: "AIzaSyD7RtfNHg927bBAadsndUxeIHCZFMIxwlk",
+    authDomain: "creative-korner-6aadf.firebaseapp.com",
+    databaseURL: "https://creative-korner-6aadf.firebaseio.com",
+    projectId: "creative-korner-6aadf",
+    storageBucket: "creative-korner-6aadf.appspot.com",
+    messagingSenderId: "30327310061",
+    appId: "1:30327310061:web:ebb51eb25eff490a56aee4",
+    measurementId: "G-PTTMZR8KNJ"
   },
 };
