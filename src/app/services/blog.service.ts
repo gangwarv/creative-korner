@@ -10,7 +10,7 @@ export class BlogService {
   private colName = "BlogPost";
   private collection: AngularFirestoreCollection<Blog>;
   constructor(private afs: AngularFirestore) {
-    this.collection = afs.collection<Blog>("BlogPost");
+    this.collection = afs.collection<Blog>(this.colName);
   }
 
   get(id: string): Observable<Blog> {
@@ -21,6 +21,8 @@ export class BlogService {
     return this.afs.collection<Blog>(this.colName).add(post);
   }
   update(post: Blog): Promise<any> {
-    return this.collection.doc(post.id).set({...post, updatedAt:new Date()});
+    let docRef = this.collection.doc<Blog>(post.id);
+    // docRef.get()
+    return docRef.set({...post, updatedAt:new Date()});
   }
 }
