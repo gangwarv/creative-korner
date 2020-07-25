@@ -18,7 +18,15 @@ exports.onAuthCreate = functions.auth.user().onCreate((user) => {
    * canPublish = can publish own blogs
    * isAdmin = can publish own and other people's blog
    */
-  const userData = { ...user, roles: { isPublisher: false, isAdmin: false } };
+
+  const userData = {
+    uid: user.uid,
+    email: user.email,
+    displayName: user.displayName,
+    photoURL: user.photoURL,
+    createdAt: new Date(),
+    roles: { isPublisher: false, isAdmin: false },
+  };
   if (
     user &&
     user.displayName &&
@@ -31,4 +39,21 @@ exports.onAuthCreate = functions.auth.user().onCreate((user) => {
   return db.collection("users").doc(user.uid).set(userData, { merge: true });
 });
 
-// exports.onBlogCreate = functions.firestore.collection('Blog')
+// blog create =>
+exports.onBlogCreate = functions.firestore
+  .document("BlogPost/{id}")
+  .onCreate((snapshot, context) => {
+    if (!isAppInitialized) {
+      admin.initializeApp();
+      isAppInitialized = true;
+    }
+    const db = admin.firestore();
+
+    let data = {
+
+    };
+
+    return db.doc('metadata/blogs').set(data, {merge: true});
+  });
+
+  
